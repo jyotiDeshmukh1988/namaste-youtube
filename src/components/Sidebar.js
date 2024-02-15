@@ -5,8 +5,14 @@ import {
   faVideo,
   faCameraRetro,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  const isMenuOpen = useSelector((store)=>{
+    return store.app.isMenuOpen;
+  })
+  // early return
+  if(!isMenuOpen) return null;
   return (
     <div className="w-1/5 shadow-lg p-4">
       <div className="flex flex-col gap-2 border-b-2 pb-3">
