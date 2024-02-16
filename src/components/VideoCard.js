@@ -6,7 +6,7 @@ import {
 } from "../utils/functions";
 
 const VideoCard = ({ info }) => {
-  console.log(info);
+ // console.log(info);
   const { contentDetails, snippet, statistics } = info;
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
   const prevDate = new Date(publishedAt);
@@ -16,12 +16,12 @@ const VideoCard = ({ info }) => {
   const currentDate = currDate.getTime();
   return (
     <>
-      <div className="w-80 text-sm">
+      <div className="w-60 text-sm">
         <div className="relative">
         <img
           src={thumbnails?.standard?.url}
           alt={title}
-          className="w-full rounded mt-3"
+          className="w-full rounded mt-3 cursor-pointer"
         />
         
         <span className="bg-black py-1 px-3 text-white rounded ml-1 absolute bottom-3 right-1">
@@ -29,8 +29,8 @@ const VideoCard = ({ info }) => {
         </span>
         </div>
         <div className="flex gap-2 flex-col">
-          <h1 className="font-semibold pt-2">{title}</h1>
-          <h2 className="">{channelTitle}</h2>
+          <h1 className="font-semibold pt-2 cursor-pointer">{title}</h1>
+          <h2 className="cursor-pointer">{channelTitle}</h2>
           <p className="flex gap-2">
             <span>{formatNumber(statistics?.viewCount)} views</span>
             <span>{timeDifference(currentDate, previousDate)}</span>
