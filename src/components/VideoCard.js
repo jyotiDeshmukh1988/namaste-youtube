@@ -6,7 +6,7 @@ import {
 } from "../utils/functions";
 
 const VideoCard = ({ info }) => {
- // console.log(info);
+  console.log(info);
   const { contentDetails, snippet, statistics } = info;
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
   const prevDate = new Date(publishedAt);
@@ -18,15 +18,15 @@ const VideoCard = ({ info }) => {
     <>
       <div className="w-60 text-sm">
         <div className="relative">
-        <img
-          src={thumbnails?.standard?.url}
-          alt={title}
-          className="w-full rounded mt-3 cursor-pointer"
-        />
-        
-        <span className="bg-black py-1 px-3 text-white rounded ml-1 absolute bottom-3 right-1">
-          {formatDuration(contentDetails?.duration)}
-        </span>
+          <img
+            src={thumbnails?.standard?.url}
+            alt={title}
+            className="w-full rounded mt-3 cursor-pointer"
+          />
+
+          <span className="bg-black py-1 px-3 text-white rounded ml-1 absolute bottom-3 right-1">
+            {formatDuration(contentDetails?.duration)}
+          </span>
         </div>
         <div className="flex gap-2 flex-col">
           <h1 className="font-semibold pt-2 cursor-pointer">{title}</h1>
@@ -37,6 +37,18 @@ const VideoCard = ({ info }) => {
           </p>
         </div>
       </div>
+    </>
+  );
+};
+
+export const ShowRecommended = ({ info }) => {
+  return (
+    <>
+    <div className="relative">
+      <span className="bg-green-900 text-white text-xs absolute top-3 py-1 px-2 w-full z-20">recommended</span>
+      </div>
+      <VideoCard info={info} />
+      
     </>
   );
 };

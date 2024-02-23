@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { YOUTUBE_VIDEOS_API } from "../utils/constants";
-import VideoCard from "./VideoCard";
+import VideoCard, { ShowRecommended } from "./VideoCard";
+import { Link } from "react-router-dom";
 
 const VideoContainer = () => {
   const [videos, setVideos] = useState([]);
@@ -16,9 +17,18 @@ const VideoContainer = () => {
   };
 
   return (
-    <div className="flex gap-6 flex-wrap">
-      {videos.map((video)=>{
-        return <VideoCard info={video} key={video.id}/>
+    <div className="flex gap-3 flex-wrap">
+      {videos.map((video) => {
+        const { likeCount } = video.statistics;
+        return (
+          <Link to={"/watch?v=" + video.id} key={video.id}>
+            {likeCount > 50000 ? (
+              <ShowRecommended info={video} />
+            ) : (
+              <VideoCard info={video} />
+            )}
+          </Link>
+        );
       })}
     </div>
   );

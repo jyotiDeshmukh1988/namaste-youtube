@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch} from "react-redux";
 import { toggleMenu } from "../store/appSlice";
 
+
 const Header = () => {
   //console.log(menuOpen);
   const dispatch = useDispatch();
