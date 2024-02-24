@@ -6,7 +6,7 @@ import {
 } from "../utils/functions";
 
 const VideoCard = ({ info }) => {
-  console.log(info);
+  //console.log(info);
   const { contentDetails, snippet, statistics } = info;
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
   const prevDate = new Date(publishedAt);
