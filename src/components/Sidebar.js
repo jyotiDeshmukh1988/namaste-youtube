@@ -9,17 +9,19 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const isMenuOpen = useSelector((store)=>{
+  const isMenuOpen = useSelector((store) => {
     return store.app.isMenuOpen;
-  })
+  });
   // early return
-  if(!isMenuOpen) return null;
+  if (!isMenuOpen) return null;
   return (
-    <div className="w-1/5 shadow-lg p-4">
+    <div className="shadow-lg p-4 w-3/12">
       <div className="flex flex-col gap-2 border-b-2 pb-3">
-      <div>
-          <Link to="/" className="cursor-pointer"><FontAwesomeIcon icon={faHouseChimney} className="pr-2" />
-          Home</Link>
+        <div className="w-24">
+          <Link to="/" className="cursor-pointer">
+            <FontAwesomeIcon icon={faHouseChimney} className="pr-2" />
+            Home
+          </Link>
         </div>
         <div>
           <FontAwesomeIcon icon={faVideo} className="pr-2" />

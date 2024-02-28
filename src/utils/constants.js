@@ -1,12 +1,23 @@
-export const GOOGLE_API_KEY = "AIzaSyADhuMSswx4EqfZsajYPYLgwe23rYnWJCo";
+const YOUTUBE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export const LIVE_CHAT_COUNT = 25;
 
 export const YOUTUBE_VIDEOS_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=40&regionCode=IN&key=" +
-  GOOGLE_API_KEY;
+  YOUTUBE_API_KEY;
+
+export const YOUTUBE_CATEGORIES_API =
+  "https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=" +
+  YOUTUBE_API_KEY;
+
+export const YOUTUBE_CATEGORIES_VIDEOS_API ="https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=";
+
+export const YOUTUBE_SEARCH_VIDEOS_API ="https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=";  
+
+export const YOUTUBE_COMMENTS_API = "https://youtube.googleapis.com/youtube/v3/commentThreads?part=id%2Csnippet%2Creplies&videoId=[VIDEO_ID]&maxResults=500&key="+YOUTUBE_API_KEY
 
 export const SINGLE_YOUTUBE_VIDEO_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=";
 
-export const YOUTUBE_SEARCH_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+export const YOUTUBE_SEARCH_API =
+  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";

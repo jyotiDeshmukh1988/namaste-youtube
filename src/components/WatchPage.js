@@ -4,11 +4,13 @@ import { closeMenu } from "../store/appSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChat from "./LiveChat";
+import VideoContainer from "./VideoContainer";
 
 const WatchPage = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   //console.log(searchParams.get("v"));
+  const videoID = searchParams.get("v");
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
@@ -20,18 +22,18 @@ const WatchPage = () => {
             width="900"
             height="500"
             className="aspect-video rounded-lg"
-            src={"https://www.youtube.com/embed/" + searchParams.get("v")}
+            src={"https://www.youtube.com/embed/" + videoID}
             title="YouTube video player"
-            FrameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
+          <CommentsContainer videoID={videoID} />
         </div>
         <div className="p-2 w-full">
-          <LiveChat />
+          {/*<LiveChat />*/}
+          <VideoContainer isRecommended={true}/>
         </div>
       </div>
-      <CommentsContainer />
     </div>
   );
 };

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../store/appSlice";
-import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import {
+  YOUTUBE_SEARCH_API,
+  YOUTUBE_SEARCH_VIDEOS_API,
+} from "../utils/constants";
 import { cacheResults } from "../store/searchSlice";
-import { json } from "react-router-dom";
+import { addVideos } from "../store/categoryFilterSlice";
 
 const Header = () => {
   //console.log(menuOpen);
@@ -59,7 +62,7 @@ const Header = () => {
    */
 
   const getSearchSuggestions = async () => {
-    console.log("API CALL - " + searchQuery);
+    //console.log("API CALL - " + searchQuery);
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const searchData = await data.json();
     //console.log(searchData[1]);
@@ -71,32 +74,66 @@ const Header = () => {
     );
   };
 
+  const getSearchVideo = async () => {
+    //console.log(searchQuery);
+    const data = await fetch(
+      YOUTUBE_SEARCH_VIDEOS_API + searchQuery + "&key=" + process.env.REACT_APP_GOOGLE_API_KEY
+    );
+    const result = await data.json();
+    //console.log(result.items);
+    dispatch(addVideos(result.items));
+    //setSearchQuery("");
+  };
+
+  const getautoSearchVideo = async (value) => {
+    // console.log(autoval);
+    const data = await fetch(
+      YOUTUBE_SEARCH_VIDEOS_API + value + "&key=" + process.env.REACT_APP_GOOGLE_API_KEY
+    );
+    const result = await data.json();
+   //console.log(result.items);
+    dispatch(addVideos(result.items));
+    setShowSuggestions(false);
+    setSearchQuery(value);
+  };
+
   return (
     <div className="grid grid-flow-col fixed w-full z-30 h-12">
-      <div className="flex py-2 pl-5 items-start justify-start col-span-1 bg-white">
+      <div className="flex py-2 pl-5 items-center justify-start col-span-1 bg-white">
         <img
-          className="h-6 cursor-pointer"
+          className="h-7 cursor-pointer"
           src="https://cdn.icon-icons.com/icons2/2596/PNG/512/hamburger_button_menu_icon_155296.png"
           alt="hamburger"
           onClick={toggleMenuHandler}
         />
         <img
-          className="h-6 pl-2"
+          className="h-10 pl-2"
           src="https://www.pngkey.com/png/detail/314-3149308_youtube-podcast-icon-link-youtube-new-logo-png.png"
           alt="logo"
         />
       </div>
       <div className="py-2 col-span-10 bg-white">
-        <div className="flex">
+        <div className="flex relative items-center">
           <input
             type="text"
-            className="border w-1/2 py-2 pl-6 rounded-l-full border-gray-400"
+            className="border w-3/5 py-2 pl-6 rounded-l-full border-l-gray-200 border-t-gray-200 border-b-gray-200"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}
-            onBlur={() => setShowSuggestions(false)}
+            //  onBlur={() => setShowSuggestions(false)}
           />
-          <button className="border border-gray-400 px-5 py-3 rounded-r-full bg-gray-300">
+          {showSuggestions && suggestions.length > 0 && (
+            <button
+              className=" px-5 py-3 text-lg absolute right-[526px] -top-1"
+              onClick={() => setSearchQuery("")}
+            >
+              X
+            </button>
+          )}
+          <button
+            className="border border-gray-200 px-5 py-3 rounded-r-full bg-gray-200"
+            onClick={() => getSearchVideo()}
+          >
             <img
               className="h-4"
               src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-icon.png"
@@ -107,9 +144,13 @@ const Header = () => {
         {showSuggestions && suggestions.length > 0 && (
           <div className="fixed bg-white py-2 px-2 w-[33rem] z-20 shadow-lg rounded-lg border border-gray-100">
             <ul>
-              {suggestions?.map((value) => {
+              {suggestions?.map((value, index) => {
                 return (
-                  <li className="py-2 px-3 hover:bg-gray-200" key={value}>
+                  <li
+                    className="py-2 px-3 hover:bg-gray-200 cursor-pointer"
+                    key={index}
+                    onClick={() => getautoSearchVideo(value)}
+                  >
                     {value}
                   </li>
                 );
@@ -120,7 +161,7 @@ const Header = () => {
       </div>
       <div className="py-2 pr-5 flex justify-end col-span-1 items-start bg-white">
         <img
-          className="h-8"
+          className="h-9"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQna96LOHsB0K43Ybx1vGQyqq4IKX9k_1xW_am2qdgT-Q&s"
           alt="user icon"
         />
