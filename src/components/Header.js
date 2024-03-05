@@ -99,24 +99,24 @@ const Header = () => {
 
   return (
     <div className="grid grid-flow-col fixed w-full z-30 h-12">
-      <div className="flex py-2 pl-5 items-center justify-start col-span-1 bg-white">
+      <div className="flex py-2 px-5 items-center justify-start col-span-5 sm:col-span-1 bg-white">
         <img
-          className="h-7 cursor-pointer"
+          className="h-5 pt-1 cursor-pointer"
           src="https://cdn.icon-icons.com/icons2/2596/PNG/512/hamburger_button_menu_icon_155296.png"
           alt="hamburger"
           onClick={toggleMenuHandler}
         />
-        <img
-          className="h-10 pl-2"
+        <a href="/"><img
+          className="h-5 pl-2 sm:h-7"
           src="https://www.pngkey.com/png/detail/314-3149308_youtube-podcast-icon-link-youtube-new-logo-png.png"
           alt="logo"
-        />
+        /></a>
       </div>
-      <div className="py-2 col-span-10 bg-white">
+      <div className="py-2 col-span-7 sm:col-span-10 bg-white">
         <div className="flex relative items-center">
           <input
             type="text"
-            className="border w-3/5 py-2 pl-6 rounded-l-full border-l-gray-200 border-t-gray-200 border-b-gray-200"
+            className="border w-10/12 sm:w-3/5 py-2 pl-6 rounded-l-full border-l-gray-200 border-t-gray-200 border-b-gray-200"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSuggestions(true)}

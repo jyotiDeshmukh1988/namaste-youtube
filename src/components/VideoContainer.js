@@ -37,7 +37,7 @@ const VideoContainer = ({ isRecommended }) => {
           const { videoId } = id;
           const videoID = videoId ? videoId : "aDm5WZ3QiIE";
           return (
-            <div className={isMenuOpen ? "w-2/6" : isRecommended ? "w-full" :"w-1/4"}>
+            <div className={isMenuOpen ? "w-2/6" : isRecommended ? "w-full" :"w-1/2 md:w-1/4 px-2"}>
               <Link to={"/watch?v=" + videoID} key={video?.etag}>
                 {isRecommended ? (
                   <ShowRecommended info={video} isRecommended={isRecommended}/>

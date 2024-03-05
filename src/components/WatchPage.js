@@ -15,13 +15,10 @@ const WatchPage = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex p-4">
+   <div className="flex p-4 flex-col md:flex-row">
         <div className="p-2">
           <iframe
-            width="900"
-            height="500"
-            className="aspect-video rounded-lg"
+            className="aspect-video rounded-lg w-full"
             src={"https://www.youtube.com/embed/" + videoID}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -33,8 +30,7 @@ const WatchPage = () => {
           {/*<LiveChat />*/}
           <VideoContainer isRecommended={true}/>
         </div>
-      </div>
-    </div>
+  </div>
   );
 };
 
