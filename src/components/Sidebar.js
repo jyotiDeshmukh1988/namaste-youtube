@@ -2,8 +2,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouseChimney,
-  faVideo,
   faCameraRetro,
+  faClockRotateLeft,
+  faHourglassEnd,
+  faArrowDownShortWide,
+  faTowerBroadcast,
+  faClapperboard
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -24,7 +28,7 @@ const Sidebar = () => {
           </Link>
         </div>
         <div>
-          <FontAwesomeIcon icon={faVideo} className="pr-2" />
+        <FontAwesomeIcon icon={faArrowDownShortWide} className="pr-2"/>
           Shorts
         </div>
         <div>
@@ -34,26 +38,22 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col gap-2 border-b-2 pb-3 pt-3">
         <div>
-          <FontAwesomeIcon icon={faVideo} className="pr-2" />
-          Shorts
+        <FontAwesomeIcon icon={faHourglassEnd} className="pr-2"/>
+          Trending
         </div>
         <div>
-          <FontAwesomeIcon icon={faCameraRetro} className="pr-2" />
-          Subscriptions
+        <FontAwesomeIcon icon={faClockRotateLeft} className="pr-2" />
+          History
         </div>
       </div>
       <div className="flex flex-col gap-2 border-b-2 pb-3 pt-3">
         <div>
-          <FontAwesomeIcon icon={faHouseChimney} className="pr-2" />
-          Home
+        <FontAwesomeIcon icon={faClapperboard} className="pr-2"/>
+          Movies
         </div>
         <div>
-          <FontAwesomeIcon icon={faVideo} className="pr-2" />
-          Shorts
-        </div>
-        <div>
-          <FontAwesomeIcon icon={faCameraRetro} className="pr-2" />
-          Subscriptions
+        <FontAwesomeIcon icon={faTowerBroadcast} className="pr-2"/>
+          Live
         </div>
       </div>
     </div>

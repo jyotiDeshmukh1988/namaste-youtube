@@ -18,7 +18,7 @@ const VideoCard = ({ info,isRecommended }) => {
   return (
     <>
       <div className={isRecommended ? "flex flex-row gap-2 md:flex-col lg:flex-row" :"text-sm"}>
-        <div className={isRecommended ? "relative w-1/2 md:w-full lg:w-1/2" :"relative"}>
+        <div className={isRecommended ? "relative w-1/2 md:w-full lg:w-fit" :"relative"}>
           <img
             src={thumbnails?.medium?.url}
             alt={title}
@@ -29,7 +29,7 @@ const VideoCard = ({ info,isRecommended }) => {
             {formatDuration(contentDetails?.duration)}
   </span>*/}
         </div>
-        <div className={isRecommended ? "flex gap-1 flex-col w-1/2 md:w-full lg:w-1/2" :"flex gap-1 flex-col"}>
+        <div className={isRecommended ? "flex gap-1 flex-col w-1/2 md:w-full lg:w-fit" :"flex gap-1 flex-col"}>
           <h1 className="font-semibold pt-2 cursor-pointer text-clip overflow-hidden text-sm">{title}</h1>
           <h2 className="cursor-pointer text-sm">{channelTitle}</h2>
           <p className="flex gap-1 text-sm">

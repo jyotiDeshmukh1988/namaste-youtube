@@ -8,7 +8,7 @@ const getautoSearchVideo = async(value) =>{
     // console.log(autoval);
     const data = await fetch(YOUTUBE_SEARCH_VIDEOS_API+value+"&key="+process.env.REACT_APP_GOOGLE_API_KEY);
     const result = await data.json();
-    console.log(result.items);
+    //console.log(result.items);
     dispatch(addVideos(result.items));
 } 
 

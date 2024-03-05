@@ -7,7 +7,7 @@ const Button = ({name}) => {
   const filterVideoList = async(name) => {
     const data = await fetch(YOUTUBE_CATEGORIES_VIDEOS_API+name+"&key="+process.env.REACT_APP_GOOGLE_API_KEY);
     const result = await data.json();
-    console.log(result.items);
+    //console.log(result.items);
     dispatch(addVideos(result.items));
   }
 
